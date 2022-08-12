@@ -8,7 +8,7 @@ if (!tokenValue) {
     res
       .status(401)
       .json({ success: false, errorMessage: "로그인이 필요합니다." });
-      console.log("로그인필요123@@@@@@");
+      
     return;
   }
 
@@ -22,7 +22,7 @@ if (!tokenValue) {
     res
       .status(401)
       .json({ success: false, errorMessage: "로그인이 필요합니다." });
-      console.log("로그인필요456");
+      
     return;
   }
 };

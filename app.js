@@ -1,10 +1,8 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const authMiddleware = require("./middlewares/auth-middleware");
 const app = express();
 const port = 3000;
 const cookieParser = require("cookie-parser");
-
 const RoutesLogin = require("./routes/login");
 const RoutesUser = require("./routes/users");
 const RoutesPost = require("./routes/posts");
