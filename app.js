@@ -1,5 +1,5 @@
 const express = require("express");
-const authMiddleware = require("./middlewares/auth-middleware");
+
 const app = express();
 const port = 3000;
 const cookieParser = require("cookie-parser");
