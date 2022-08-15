@@ -43,12 +43,12 @@ class PostController {
       //게시글 상세조회
       getPostDetail = async (req, res,next) => {
         try{
-            const { _postId }=req.params;
-            if(!Number.isInteger(Number(_postId))){
+            const { postId }=req.params;
+            if(!Number.isInteger(Number(postId))){
                 next();
                 return;
             }
-            const data = await this.postService.getPostDetail(_postId);
+            const data = await this.postService.getPostDetail(postId);
             return res.status(200).json({ data: data});
         }catch(error){
             const message = `${req.methiod} ${req.originalUrl} : ${error.message}`;
@@ -62,7 +62,7 @@ class PostController {
             const { user } = res.locals;
             const { _postId } = req.params;
 
-            if(!Number.isInteger(Number(_postid))) {
+            if(!Number.isInteger(Number(postId))) {
                 next();
                 return;
             }
