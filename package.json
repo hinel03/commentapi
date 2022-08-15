@@ -6,13 +6,14 @@
   "scripts": {
     "test": "jest",
     "prettify": "prettier --write *.js **/*.js",
-    "coverage" : "jest --coverage"
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "date-utils": "^1.2.21",
     "dayjs": "^1.11.4",
     "express": "^4.18.1",

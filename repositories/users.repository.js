@@ -8,6 +8,7 @@ class userRepository {
     };
     findOneUser = async(email) => {
         const user = await User.findOne({where : {email}});
+        console.log("!!!!!!!!!!!",user);
         return user;
     };
 };
