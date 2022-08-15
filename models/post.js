@@ -1,8 +1,8 @@
-// like 포함 안한 버전, 이미지 
-"use strict";
-const { Model } = require(sequelize) 
-
-module.exports = (sequelize, DataTYpes) => {
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
     /**
      * Helper method for defining associations.
@@ -10,26 +10,24 @@ module.exports = (sequelize, DataTYpes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define associate here
+      // define association here
     }
   }
-  Post.init(
-    {
-      _id: {
-        primarykey: true,
-        allowNULL: false,
-        autoIncrement: true,
-        type: DataTypes.INTEGER,
-      },
-      userName: Datatypes.STRING,
-      title:DataTypes.STRING,
-      content:DataTypes.STRING,
-      email: DataTypes.STRING,
+  Post.init({
+    postId: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
     },
-    {
-      sequelize,
-      modelName: "post",
-    }
-  );
+    title: DataTypes.STRING,
+    content: DataTypes.STRING,
+    email: DataTypes.STRING,
+    userName : DataTypes.STRING,
+    like : DataTypes.INTEGER
+  }, {
+    sequelize,
+    modelName: 'Post',
+  });
   return Post;
 };
