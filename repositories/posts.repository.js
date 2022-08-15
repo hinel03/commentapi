@@ -4,7 +4,7 @@ const Sequelize = require("sequelize");
 class PostRepository {
     //postId를 받아 게시글 1개의 정보를 반환한다
     getPost = async(postId)=>{
-        const thisPost = await Post.findOne({id: postId });
+        const thisPost = await Post.findOne({postId: postId });
         return thisPost;
     }
 
