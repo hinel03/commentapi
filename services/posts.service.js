@@ -12,7 +12,7 @@ class PostService {
         // dataAll 하나씩 돌면서 리턴 필요한 요소들만 찾아 resultData완성
         const resultData = dataAll.map((el) => {
             return {
-                postId:el._id,
+                postId:el.id,
                 userName:el.userName,
                 title:el.title,
                 createdAt:el.createdAt,
@@ -50,7 +50,7 @@ class PostService {
             return { message: "해당 게시글이 없습니다."};
         }else{
             return {
-                postId: thisPost._id,
+                postId: thisPost.id,
                 email:thisPost.email,
                 userName: thisPost.userName,
                 images: thisPost.images,
