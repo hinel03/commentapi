@@ -60,7 +60,7 @@ class PostController {
       deletePost = async (req, res, next) => {
         try {
             const { user } = res.locals;
-            const { _postId } = req.params;
+            const { postId } = req.params;
 
             if(!Number.isInteger(Number(postId))) {
                 next();
