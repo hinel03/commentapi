@@ -16,7 +16,7 @@ router.post("/", authMiddleeware, postsController.createNewPost);
 //게시글 상세 조회
 router.get("/:postId", postsController.getPostDetail);
 //게시글 수정
-router.get("/:postId", authMiddleware, postsController.updatePost);
+router.put("/:postId", authMiddleware, postsController.updatePost);
 //게시글 삭제
 router.get(":/postId", authMiddleware, postController.deletePost);
 
