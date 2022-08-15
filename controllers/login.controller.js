@@ -29,7 +29,8 @@ class LoginController {
     res.cookie("token", token);
     return res.status(200).json({
       result: true,
-      token,
+      email: user.email,
+      userName: user.userName,
     });
   };
 }
