@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cors = require("cors");
 const app = express();
 const port = 3000;
 const cookieParser = require("cookie-parser");
@@ -7,10 +7,11 @@ const RoutesLogin = require("./routes/login");
 const RoutesUser = require("./routes/users");
 const RoutesPost = require("./routes/posts");
 const RoutesComment = require("./routes/comments");
+app.use(cors());
 app.use(cookieParser());
 app.use(express.urlencoded());
 app.use(express.json()); // body로 들어오는 json 형태의 데이터를 파싱해준다.
-app.use("/api", [RoutesLogin,RoutesUser,RoutesPost,RoutesComment]);
+app.use("/api", [RoutesLogin, RoutesUser, RoutesPost, RoutesComment]);
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
