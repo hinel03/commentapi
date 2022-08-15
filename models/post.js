@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Post.init({
+    postId: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
     title: DataTypes.STRING,
     content: DataTypes.STRING,
     email: DataTypes.STRING,
