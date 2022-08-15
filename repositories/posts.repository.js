@@ -1,10 +1,10 @@
-const { post } = require("../models");
+const { Post } = require("../models");
 const Sequelize = require("sequelize");
 
 class PostRepository {
     //postId를 받아 게시글 1개의 정보를 반환한다
     getPost = async(postId)=>{
-        const thisPost = await PostRepository.findOne({_id: postId });
+        const thisPost = await Post.findOne({id: postId });
         return thisPost;
     }
 
@@ -18,7 +18,7 @@ class PostRepository {
     };
 
     //게시글 작성
-    creatreNewPost = async(userid, nickname, title, email, images, content) => {
+    creatreNewPost = async(userId, nickname, title, email, images, content) => {
         const createPost = await Post.create({
             userId,
             nickname,
@@ -36,7 +36,7 @@ class PostRepository {
     // 전달된 postId에 해당하는 게시글을 삭제한. returns 삭제한 게시글정보
     deletePost = async (postId) => {
     console.log("****** --- PostRepository.deletePost ---");
-    const deletedPost = await Post.destroy({ where: { _id: postId } });
+    const deletedPost = await Post.destroy({ where: { id: postId } });
 
     console.log("****** --- PostRepository.deletePost Returns ---");
     return deletedPost;
