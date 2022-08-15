@@ -9,4 +9,5 @@ const logoutcontroller = new LogoutController();
 router.post("/user/signup", usercontroller.createUser);
 router.post("/user/login", logincontroller.login);
 router.get("/user/logout", logoutcontroller.logout);
+
 module.exports = router;
