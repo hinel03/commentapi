@@ -32,6 +32,12 @@ class UserController {
         error: "이메일 양식이 올바르지 않습니다.",
       });
     }
+    if (existUser) {
+      return res.status(400).json({
+        result: false,
+        error: "중복된 이메일입니다. 다른 이메일을 입력해주세요!",
+      });
+    }
 
     //유효성 검사
     if (!userNametest.test(userName)) {
