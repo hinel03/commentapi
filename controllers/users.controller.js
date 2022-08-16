@@ -1,23 +1,34 @@
 const UserService = require("../services/users.service");
 
 class UserController {
+  check = false;
   userService = new UserService();
   emailcheck = async (req, res, next) => {
     const { email } = req.params;
     const emailcheck = await this.userService.findOneUser(email);
     if (emailcheck) {
+      this.check = true;
       return res.status(400).json({
         result: false,
         error: "중복된 이메일입니다. 다른 이메일을 입력해주세요",
       });
     } else {
+      this.check = true;
       return res.status(200).json({
         result: true,
         message: "사용가능한 이메일입니다.",
       });
     }
   };
+
   createUser = async (req, res, next) => {
+    if (this.check === false) {
+      return res.status(400).json({
+        result: false,
+        error: "이메일 중복 체크를 해주세요.",
+      });
+    }
+
     const { email, userName, password, passwordCheck } = req.body;
     const tokenValue = req.cookies.token;
 
@@ -70,6 +81,7 @@ class UserController {
 
     //유효성 검사를 통과
     await this.userService.createUser(email, userName, password, passwordCheck);
+    this.check = false;
     return res.status(200).json({
       result: true,
     });
