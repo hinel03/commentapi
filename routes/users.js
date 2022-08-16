@@ -9,5 +9,5 @@ const logoutcontroller = new LogoutController();
 router.post("/user/signup", usercontroller.createUser);
 router.post("/user/login", logincontroller.login);
 router.get("/user/logout", logoutcontroller.logout);
-
+router.get("/user/emailcheck/:email", usercontroller.emailcheck);
 module.exports = router;
