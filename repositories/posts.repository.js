@@ -42,3 +42,4 @@ class PostRepository {
     return deletedPost;
     };
 }
+module.exports = PostRepository;
