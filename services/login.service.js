@@ -9,6 +9,7 @@ class LoginService {
       return {
         email: UserData.email,
         password: UserData.password,
+        userName: UserData.userName,
       };
     } else {
       return;
