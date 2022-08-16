@@ -35,7 +35,7 @@ class UserController {
     if (existUser) {
       return res.status(400).json({
         result: false,
-        error: "중복된 이메일입니다. 다른 이메일을 입력해주세요",
+        error: "중복된 이메일입니다. 다른 이메일을 입력해주세요!",
       });
     }
 
