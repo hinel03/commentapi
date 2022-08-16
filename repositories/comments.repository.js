@@ -1,22 +1,19 @@
-const { Comments } = require("../models");
-const { Posts } = require("../models");
+const { Comment } = require("../models");
+const { Post } = require("../models");
 
 class CommentRepository {
   findCommentById = async (postId) => {
-    const comment = await Comments.findAll(
-      { order: [["createdAt", "DESC"]] },
-      { where: { postId } }
-    );
+    const comment = await Comment.findAll({ where: { postId } });
     return comment;
   };
 
-  createComment = async (postId, nickname, email, content) => {
-    const selectedPost = await Posts.findOne({ where: { postId } });
+  createComment = async (postId, userName, email, content) => {
+    const selectedPost = await Post.findOne({ where: { postId } });
     if (!selectedPost) throw new Error("Post doesn't exist");
 
-    const createCommentData = await Comments.create({
+    const createCommentData = await Comment.create({
       postId,
-      nickname,
+      userName,
       email,
       content,
     });
@@ -24,27 +21,32 @@ class CommentRepository {
     return createCommentData;
   };
 
-  deleteComment = async (postId, commentId) => {
-    const selectedComment = await Comments.findOne({ commentId });
-    const selectedPostId = postId;
-    const selectedPost = await Posts.findOne({ selectedPostId });
+  deleteComment = async (commentId, email) => {
+    const selectedComment = await Comment.findOne({ commentId });
+    console.log(selectedComment);
 
-    if (!selectedComment) throw new Error("Comment doesn't exist");
+    if(!selectedComment.length){
+        return { result: false, Error:"해당 댓글이 존재하지 않습니다." };
+    }
+
+    if (email !== selectedComment.email){
+        return { result: false, Error:"본인 작성 댓글이 아닙니다." };
+    }
 
     const updateCommentData = await Comment.destroy({ where: { commentId } });
 
-    return updateCommentData;
+    return {result:true, Message: "댓글이 삭제되었습니다."};
   };
 
-  deletedPost = async (postId, commentId) => {
+  deletedPost = async (postId) => {
     const selectedPostId = postId;
-    const selectedPost = await Posts.findOne({ selectedPostId });
+    const selectedPost = await Post.findOne({ selectedPostId });
 
-    if (!selectedPost) throw new Error("Comment doesn't exist");
+    if (!selectedPost.length) throw new Error("게시글이 존재하지 않습니다.");
+   
+    const updateCommentData = await Comment.destroyAll({ where: { postId } });
 
-    const updateCommentData = await Comments.destroyAll({ where: { postId } });
-
-    return updateCommentData;
+    return {result:true, Message:"댓글을 모두 삭제하였습니다."};
   };
 }
 

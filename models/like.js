@@ -21,8 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       postId: DataTypes.INTEGER,
       userId: DataTypes.INTEGER,
-      nickname: DataTypes.STRING,
-      password: DataTypes.STRING,
+     
     },
     {
       sequelize,

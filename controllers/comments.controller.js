@@ -5,8 +5,8 @@ class CommentController {
 
   getComments = async (req, res, next) => {
     const { postId } = req.params;
-    const comment = await this.CommentService.findCommentById(postId);
-
+    const comment = await this.CommentService.findComments(postId);
+    console.log(comment);
     res.status(200).json({ data: comment });
   };
 
@@ -17,9 +17,9 @@ class CommentController {
 
     const createCommentData = this.CommentService.createComment(
       postId,
-      user.nickname,
+      user.userName,
       user.email,
-      content
+      content,
     );
 
     if (createCommentData) {
@@ -30,38 +30,34 @@ class CommentController {
   };
 
   deleteComment = async (req, res, next) => {
-    const { postId, commentId } = req.params;
+    const { commentId } = req.params;
     const { user } = res.locals;
 
-    const deleted = await this.CommentService.deleteComment(
+    const { result } = await this.CommentService.deleteComment(
       commentId,
-      postId,
-      commentId,
-      user.email
+      user.email,
     );
+    
+    
 
-    if (!deleted) {
-      res.status(200).json({ result: true });
+    if (deleted.result === true) {
+      res.status(200).json({ deleted });
     } else {
-      res.status(400).json({ result: false });
+      res.status(400).json({ deleted });
     }
   };
 
   deletedPost = async (req, res, next) => {
     const { postId, commentId } = req.params;
-    const { user } = res.locals;
-
-    const deleted = await this.CommentService.deleteComment(
-      commentId,
-      postId,
-      commentId,
-      user.email
+    
+    const deleted = await this.CommentService.deletedPost(
+        postId,
     );
 
-    if (!deleted) {
-      res.status(200).json({ result: true });
+    if (deleted.result === true) {
+      res.status(200).json({ deleted });
     } else {
-      res.status(400).json({ result: false });
+      res.status(400).json({ deleted });
     }
   };
 }

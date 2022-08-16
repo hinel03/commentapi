@@ -5,7 +5,7 @@ const Users = require("./users");
 const Logins = require("./login");
 const router = express.Router();
 router.use("/post/", [Posts]);
-router.use("/comment/", [Comments]);
+router.use("/comments/", [Comments]);
 router.use("/user/", [Users]);
 router.use("/login/", [Logins]);
 

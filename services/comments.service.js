@@ -4,14 +4,14 @@ const CommentRepository = require("../repositories/comments.repository");
 class CommentService {
   CommentRepository = new CommentRepository();
 
-  findCommentById = async (postId) => {
+  findComments = async (postId) => {
     const comments = await this.CommentRepository.findCommentById(postId);
-
+    // return comments;
     return comments.map((comment) => {
       return {
-        commentId: comment.null,
-        nickname: comment.nickname,
-        content: comment.poastId,
+        commentId: comment.commentId,
+        userName: comment.userName,
+        content: comment.content,
         createdAt: comment.createdAt,
         updatedAt: comment.updatedAt,
       };
@@ -23,7 +23,7 @@ class CommentService {
       postId,
       nickname,
       email,
-      content
+      content,
     );
 
     return {
@@ -36,19 +36,18 @@ class CommentService {
     };
   };
 
-  deleteComment = async (postId, commentId) => {
+  deleteComment = async (commentId,email) => {
     const deleted = await this.CommentRepository.deleteComment(
-      postId,
-      commentId
+      commentId,
+      email,
     );
 
     return deleted;
   };
 
-  deletedPost = async (postId, commentId) => {
+  deletedPost = async (postId) => {
     const deleted = await this.CommentRepository.deleteComment(
       postId,
-      commentId
     );
 
     return deleted;

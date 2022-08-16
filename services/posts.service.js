@@ -20,7 +20,7 @@ class PostService {
         content: post.content,
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,
-        liked: post.like,
+        likes: post.like,
         Images: post.Images,
       };
     });
@@ -37,7 +37,7 @@ class PostService {
       content: post.content,
       createdAt: post.createdAt,
       updatedAt: post.updatedAt,
-      liked: post.like,
+      likes: post.like,
       Images: post.Images,
     };
   };
@@ -60,7 +60,7 @@ class PostService {
       content: createPostData.content,
       createdAt: createPostData.createdAt,
       updatedAt: createPostData.updatedAt,
-      like: createPostData.like,
+      likes: createPostData.like,
     };
   };
 
@@ -77,8 +77,31 @@ class PostService {
       content: findPost.content,
       createdAt: findPost.createdAt,
       updatedAt: findPost.updatedAt,
-      liked: findPost.like,
+      likes: findPost.like,
     };
+  };
+
+  statusCheck = async (postId,userId) =>{
+    const result = await this.postRepository.findStatus(postId,userId);
+    return result;
+  }
+
+  likePost = async (postId, userId) => {
+    const createLikePostData = await this.postRepository.likePost(
+      postId,
+      userId,
+    );
+
+   return createLikePostData;
+  };
+
+  dislikePost = async (postId, userId) => {
+    const updateLikePost = await this.postRepository.dislikePost(
+      postId,
+      userId
+    );
+
+    return updateLikePost;
   };
 }
 module.exports = PostService;
