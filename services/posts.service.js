@@ -81,18 +81,18 @@ class PostService {
     };
   };
 
-  statusCheck = async (postId,userId) =>{
-    const result = await this.postRepository.findStatus(postId,userId);
+  statusCheck = async (postId, userId) => {
+    const result = await this.postRepository.findStatus(postId, userId);
     return result;
-  }
+  };
 
   likePost = async (postId, userId) => {
     const createLikePostData = await this.postRepository.likePost(
       postId,
-      userId,
+      userId
     );
 
-   return createLikePostData;
+    return createLikePostData;
   };
 
   dislikePost = async (postId, userId) => {

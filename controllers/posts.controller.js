@@ -2,7 +2,6 @@ const PostService = require("../services/posts.service");
 const jwt = require("jsonwebtoken");
 const CommentService = require("../services/comments.service");
 
-
 class PostsController {
   postService = new PostService();
   commentService = new CommentService();
@@ -16,7 +15,7 @@ class PostsController {
     const { postId } = req.params;
     const post = await this.postService.getPost(postId);
     const comment = await this.commentService.findComments(postId);
-    res.status(200).json({post,comment});
+    res.status(200).json({ post, comment });
   };
 
   // 게시글 생성 API
@@ -60,21 +59,21 @@ class PostsController {
     const { user } = res.locals;
 
     const checkStatus = await this.postService.statusCheck(postId, user.userId);
-    console.log({message:"값을 전달받음", checkStatus});
+    console.log({ message: "값을 전달받음", checkStatus });
 
-    if(checkStatus.result === false){
-      const createLikePostData = await this.postService.likePost(postId, user.userId);
-      res.status(200).json( createLikePostData );
+    if (checkStatus.result === false) {
+      const createLikePostData = await this.postService.likePost(
+        postId,
+        user.userId
+      );
+      res.status(200).json(createLikePostData);
+    } else {
+      const updateLikePostData = await this.postService.dislikePost(
+        postId,
+        user.userId
+      );
+      res.status(200).json(updateLikePostData);
     }
-
-    else{
-      const updateLikePostData = await this.postService.dislikePost(postId, user.userId);
-      res.status(200).json( updateLikePostData );
-    }
-
-
   };
-
-  
 }
 module.exports = PostsController;

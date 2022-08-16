@@ -25,17 +25,17 @@ class CommentRepository {
     const selectedComment = await Comment.findOne({ commentId });
     console.log(selectedComment);
 
-    if(!selectedComment.length){
-        return { result: false, Error:"해당 댓글이 존재하지 않습니다." };
+    if (!selectedComment.length) {
+      return { result: false, Error: "해당 댓글이 존재하지 않습니다." };
     }
 
-    if (email !== selectedComment.email){
-        return { result: false, Error:"본인 작성 댓글이 아닙니다." };
+    if (email !== selectedComment.email) {
+      return { result: false, Error: "본인 작성 댓글이 아닙니다." };
     }
 
     const updateCommentData = await Comment.destroy({ where: { commentId } });
 
-    return {result:true, Message: "댓글이 삭제되었습니다."};
+    return { result: true, Message: "댓글이 삭제되었습니다." };
   };
 
   deletedPost = async (postId) => {
@@ -43,10 +43,10 @@ class CommentRepository {
     const selectedPost = await Post.findOne({ selectedPostId });
 
     if (!selectedPost.length) throw new Error("게시글이 존재하지 않습니다.");
-   
+
     const updateCommentData = await Comment.destroyAll({ where: { postId } });
 
-    return {result:true, Message:"댓글을 모두 삭제하였습니다."};
+    return { result: true, Message: "댓글을 모두 삭제하였습니다." };
   };
 }
 

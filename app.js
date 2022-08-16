@@ -9,7 +9,6 @@ const RoutesPost = require("./routes/posts");
 const RoutesComment = require("./routes/comments");
 const rotuer = require("./routes");
 
-
 app.use(
   cors({
     origin: "*",

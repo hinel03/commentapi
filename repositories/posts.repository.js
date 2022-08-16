@@ -32,16 +32,14 @@ class PostRepository {
   };
 
   findStatus = async (postId, userId) => {
-    const selectPost = await Like.findOne({where: {postId, userId}});
+    const selectPost = await Like.findOne({ where: { postId, userId } });
 
-    if(selectPost){
-      return {result:true};
+    if (selectPost) {
+      return { result: true };
+    } else {
+      return { result: false };
     }
-    else{
-      return {result:false};
-    }
-  
-  }
+  };
 
   likePost = async (postId, userId) => {
     const detailpost = await Post.findOne({ where: { postId } });
@@ -52,13 +50,16 @@ class PostRepository {
     if (detailpost) {
       if (!likedpost || !likedpost.length) {
         const likePostData = await Like.create({ userId, postId });
-        const updated = await Post.update({ like: likeSaved + 1 }, { where: { postId } });
-        return { liked: likeSaved+1, isClick:true, result:true };
+        const updated = await Post.update(
+          { like: likeSaved + 1 },
+          { where: { postId } }
+        );
+        return { liked: likeSaved + 1, isClick: true, result: true };
       } else {
-        return { result:false, error: "이미 좋아요를 눌렀습니다."};
+        return { result: false, error: "이미 좋아요를 눌렀습니다." };
       }
     } else {
-      return { result:false, error: "해당 게시글이 존재하지 않습니다."};
+      return { result: false, error: "해당 게시글이 존재하지 않습니다." };
     }
   };
 
@@ -71,15 +72,17 @@ class PostRepository {
     if (detailpost) {
       if (likedpost) {
         await Like.destroy({ where: { userId: userId, postId: postId } });
-        const updated = await Post.update({ like: likeSaved - 1 }, { where: { postId } });
-        return { liked: likeSaved-1, isClick:false, result:true };
+        const updated = await Post.update(
+          { like: likeSaved - 1 },
+          { where: { postId } }
+        );
+        return { liked: likeSaved - 1, isClick: false, result: true };
       } else {
-        return { result:false, error: "좋아요를 누르지 않았습니다."};
+        return { result: false, error: "좋아요를 누르지 않았습니다." };
       }
     } else {
-      return { result:false, error: "해당 게시글이 존재하지 않습니다."};
+      return { result: false, error: "해당 게시글이 존재하지 않습니다." };
     }
-    
   };
 }
 module.exports = PostRepository;

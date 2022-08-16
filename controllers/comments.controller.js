@@ -19,7 +19,7 @@ class CommentController {
       postId,
       user.userName,
       user.email,
-      content,
+      content
     );
 
     if (createCommentData) {
@@ -35,10 +35,8 @@ class CommentController {
 
     const { result } = await this.CommentService.deleteComment(
       commentId,
-      user.email,
+      user.email
     );
-    
-    
 
     if (deleted.result === true) {
       res.status(200).json({ deleted });
@@ -49,10 +47,8 @@ class CommentController {
 
   deletedPost = async (req, res, next) => {
     const { postId, commentId } = req.params;
-    
-    const deleted = await this.CommentService.deletedPost(
-        postId,
-    );
+
+    const deleted = await this.CommentService.deletedPost(postId);
 
     if (deleted.result === true) {
       res.status(200).json({ deleted });

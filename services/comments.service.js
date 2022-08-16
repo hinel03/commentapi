@@ -23,7 +23,7 @@ class CommentService {
       postId,
       nickname,
       email,
-      content,
+      content
     );
 
     return {
@@ -36,19 +36,17 @@ class CommentService {
     };
   };
 
-  deleteComment = async (commentId,email) => {
+  deleteComment = async (commentId, email) => {
     const deleted = await this.CommentRepository.deleteComment(
       commentId,
-      email,
+      email
     );
 
     return deleted;
   };
 
   deletedPost = async (postId) => {
-    const deleted = await this.CommentRepository.deleteComment(
-      postId,
-    );
+    const deleted = await this.CommentRepository.deleteComment(postId);
 
     return deleted;
   };
