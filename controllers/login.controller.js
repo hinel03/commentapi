@@ -23,7 +23,7 @@ class LoginController {
       });
       return;
     }
-
+    console.log(user);
     let payload = { email: user.email, userName: user.userName };
     const token = jwt.sign(payload, process.env.MYSQL_KEY);
     res.cookie("token", token);
