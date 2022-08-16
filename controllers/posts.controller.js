@@ -18,8 +18,9 @@ class PostsController {
 
   // 게시글 생성 API
   createPost = async (req, res, next) => {
-    const tokenValue = req.cookies.token;
+    // const tokenValue = req.cookies.token;
     const { user } = res.locals;
+    console.log(user);
     const { title, content, Images } = req.body;
 
     const createPostData = await this.postService.createPost(
