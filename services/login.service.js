@@ -7,6 +7,7 @@ class LoginService {
     const UserData = await this.loginrepository.login(email, password);
     if (UserData) {
       return {
+        userId: UserData.userId,
         email: UserData.email,
         password: UserData.password,
         userName: UserData.userName,
