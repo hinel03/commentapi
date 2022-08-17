@@ -1,5 +1,5 @@
 const UserService = require("../services/users.service");
-
+const jwt = require("jsonwebtoken");
 class UserController {
   check = false;
   userService = new UserService();
@@ -21,7 +21,13 @@ class UserController {
       });
     }
   };
-
+  usercheck = async (req, res, next) => {
+    const { token } = req.body;
+    console.log(token);
+    const tokenValue = token;
+    const { email, userName } = jwt.verify(tokenValue, "my-secret-key");
+    return res.status(200).json({ email: email, userName: userName });
+  };
   createUser = async (req, res, next) => {
     if (this.check === false) {
       return res.status(400).json({
