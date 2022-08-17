@@ -11,7 +11,7 @@ const rotuer = require("./routes");
 
 app.use(
   cors({
-    origin: "*",
+    origin: "true",
     credential: "true",
   })
 );
