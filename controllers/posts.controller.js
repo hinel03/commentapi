@@ -53,7 +53,14 @@ class PostsController {
       .status(200)
       .json({ success: true, message: "게시글을 삭제하였습니다." });
   };
+  likePostStatus = async (req, res, next) => {
+    const { user } = res.locals;
+    const { postId } = req.params;
 
+    const checkStatus = await this.postService.statusCheck(postId, user.userId);
+
+    return checkStatus;
+  };
   likePost = async (req, res, next) => {
     const { postId } = req.params;
     const { user } = res.locals;

@@ -13,5 +13,10 @@ router.get("/:postId", postsController.getPost, commentController.getComments);
 router.post("/", authMiddleware, postsController.createPost);
 router.delete("/:postId", authMiddleware, postsController.deletePost);
 router.post("/:postId/like", authMiddleware, postsController.likePost);
+router.get(
+  "/:postId/likestatus",
+  authMiddleware,
+  postsController.likePostStatus
+);
 
 module.exports = router;
