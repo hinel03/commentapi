@@ -22,7 +22,7 @@ class UserController {
     }
   };
   usercheck = async (req, res, next) => {
-    const { token } = req.body;
+    const token = req.headers.authorization;
 
     const tokenValue = token;
     const { email, userName } = jwt.verify(tokenValue, "my-secret-key");
