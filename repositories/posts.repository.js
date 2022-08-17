@@ -13,7 +13,6 @@ class PostRepository {
   };
 
   createPost = async (title, content, email, userName, Images) => {
-    console.log(Images);
     const createPostData = await Post.create({
       title,
       content,
@@ -21,7 +20,7 @@ class PostRepository {
       Images,
       userName,
     });
-    console.log(createPostData);
+
     return createPostData;
   };
 
@@ -44,7 +43,7 @@ class PostRepository {
   likePost = async (postId, userId) => {
     const detailpost = await Post.findOne({ where: { postId } });
     const likeSaved = detailpost.like;
-    console.log(likeSaved);
+
     const likedpost = await Like.findOne({ where: { postId, userId } });
 
     if (detailpost) {
@@ -66,7 +65,7 @@ class PostRepository {
   dislikePost = async (postId, userId) => {
     const detailpost = await Post.findOne({ where: { postId } });
     const likeSaved = detailpost.like;
-    console.log(likeSaved);
+
     const likedpost = await Like.findOne({ where: { postId, userId } });
 
     if (detailpost) {

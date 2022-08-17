@@ -22,12 +22,10 @@ class CommentRepository {
   };
 
   deleteComment = async (commentId, email) => {
-    console.log("커멘드아이디", commentId);
     const selectedComment = await Comment.findOne({ where: { commentId } });
-    console.log("댓글삭제테스트 오류", selectedComment);
 
     const updateCommentData = await Comment.destroy({ where: { commentId } });
-    console.log("???", updateCommentData);
+
     return { result: true, Message: "댓글이 삭제되었습니다." };
   };
 

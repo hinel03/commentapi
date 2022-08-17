@@ -23,7 +23,7 @@ class LoginController {
       });
       return;
     }
-    console.log(user);
+
     let payload = {
       userId: user.userId,
       email: user.email,
@@ -31,6 +31,7 @@ class LoginController {
     };
     const token = jwt.sign(payload, process.env.MYSQL_KEY);
     res.cookie("token", token);
+
     return res.status(200).json({
       result: true,
       email: user.email,

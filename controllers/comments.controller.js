@@ -6,7 +6,7 @@ class CommentController {
   getComments = async (req, res, next) => {
     const { postId } = req.params;
     const comment = await this.CommentService.findComments(postId);
-    console.log(comment);
+
     res.status(200).json({ data: comment });
   };
 
@@ -32,7 +32,7 @@ class CommentController {
   deleteComment = async (req, res, next) => {
     const { commentId } = req.params;
     const { user } = res.locals;
-    console.log("댓글아이디", commentId);
+
     const result = await this.CommentService.deleteComment(
       commentId,
       user.email

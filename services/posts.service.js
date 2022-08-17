@@ -10,7 +10,7 @@ class PostService {
     allPost.sort((a, b) => {
       return b.createdAt - a.createdAt;
     });
-    console.log("test");
+
     return allPost.map((post) => {
       return {
         postId: post.postId,
@@ -43,7 +43,6 @@ class PostService {
   };
   //게시글 작성
   createPost = async (title, content, email, userName, Images) => {
-    console.log(Images);
     const createPostData = await this.postRepository.createPost(
       title,
       content,

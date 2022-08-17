@@ -22,7 +22,7 @@ class PostsController {
   createPost = async (req, res, next) => {
     // const tokenValue = req.cookies.token;
     const { user } = res.locals;
-    console.log(user);
+
     const { title, content, Images } = req.body;
 
     const createPostData = await this.postService.createPost(
@@ -59,7 +59,6 @@ class PostsController {
     const { user } = res.locals;
 
     const checkStatus = await this.postService.statusCheck(postId, user.userId);
-    console.log({ message: "값을 전달받음", checkStatus });
 
     if (checkStatus.result === false) {
       const createLikePostData = await this.postService.likePost(
