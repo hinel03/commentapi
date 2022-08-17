@@ -32,16 +32,14 @@ class CommentController {
   deleteComment = async (req, res, next) => {
     const { commentId } = req.params;
     const { user } = res.locals;
-
-    const { result } = await this.CommentService.deleteComment(
+    console.log("댓글아이디", commentId);
+    const result = await this.CommentService.deleteComment(
       commentId,
       user.email
     );
 
-    if (deleted.result === true) {
-      res.status(200).json({ deleted });
-    } else {
-      res.status(400).json({ deleted });
+    if (result) {
+      res.status(200).json({ result: true });
     }
   };
 

@@ -14,8 +14,8 @@ class PostsController {
   getPost = async (req, res, next) => {
     const { postId } = req.params;
     const post = await this.postService.getPost(postId);
-    const comment = await this.commentService.findComments(postId);
-    res.status(200).json({ post, comment });
+    const Comments = await this.commentService.findComments(postId);
+    res.status(200).json({ post, Comments });
   };
 
   // 게시글 생성 API

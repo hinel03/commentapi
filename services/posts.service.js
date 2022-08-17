@@ -20,7 +20,7 @@ class PostService {
         content: post.content,
         createdAt: post.createdAt,
         updatedAt: post.updatedAt,
-        likes: post.like,
+        liked: post.like,
         Images: post.Images,
       };
     });
@@ -37,7 +37,7 @@ class PostService {
       content: post.content,
       createdAt: post.createdAt,
       updatedAt: post.updatedAt,
-      likes: post.like,
+      liked: post.like,
       Images: post.Images,
     };
   };
@@ -60,7 +60,7 @@ class PostService {
       content: createPostData.content,
       createdAt: createPostData.createdAt,
       updatedAt: createPostData.updatedAt,
-      likes: createPostData.like,
+      liked: createPostData.like,
     };
   };
 
@@ -77,7 +77,7 @@ class PostService {
       content: findPost.content,
       createdAt: findPost.createdAt,
       updatedAt: findPost.updatedAt,
-      likes: findPost.like,
+      liked: findPost.like,
     };
   };
 

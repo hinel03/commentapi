@@ -46,7 +46,7 @@ class CommentService {
   };
 
   deletedPost = async (postId) => {
-    const deleted = await this.CommentRepository.deleteComment(postId);
+    const deleted = await this.CommentRepository.deletedPost(postId);
 
     return deleted;
   };
