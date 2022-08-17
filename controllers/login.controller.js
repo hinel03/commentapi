@@ -35,6 +35,7 @@ class LoginController {
       result: true,
       email: user.email,
       userName: user.userName,
+      token: token,
     });
   };
 }
