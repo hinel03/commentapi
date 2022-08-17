@@ -9,12 +9,7 @@ const RoutesPost = require("./routes/posts");
 const RoutesComment = require("./routes/comments");
 const rotuer = require("./routes");
 
-app.use(
-  cors({
-    origin: true,
-    credential: "true",
-  })
-);
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(cookieParser());
 app.use(express.urlencoded());
 app.use(express.json()); // body로 들어오는 json 형태의 데이터를 파싱해준다.
