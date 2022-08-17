@@ -3,6 +3,7 @@ const { User } = require("../models");
 
 module.exports = (req, res, next) => {
   const tokenValue = req.cookies.token;
+
   if (!tokenValue) {
     res.status(401).json({ result: false, error: "로그인이 필요합니다." });
 
@@ -13,7 +14,6 @@ module.exports = (req, res, next) => {
     const { userId } = jwt.verify(tokenValue, "my-secret-key"); // userId 는 jwt.sign(userId : user._id)의 user._id가 할당된다.
 
     User.findByPk(userId).then((user) => {
-      console.log(user);
       res.locals.user = user;
       next();
     });
