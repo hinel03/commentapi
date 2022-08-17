@@ -10,4 +10,5 @@ router.post("/signup", usercontroller.createUser);
 router.post("/login", logincontroller.login);
 router.get("/logout", logoutcontroller.logout);
 router.get("/emailcheck/:email", usercontroller.emailcheck);
+router.post("/usercheck", usercontroller.usercheck);
 module.exports = router;
