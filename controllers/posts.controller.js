@@ -39,14 +39,14 @@ class PostsController {
 
   // 게시글 삭제 API
   deletePost = async (req, res, next) => {
-    const tokenValue = req.cookies.token;
-    const { email, userName } = jwt.verify(tokenValue, "my-secret-key");
+    const { user } = res.locals;
+
     const { postId } = req.params;
     const deleteComments = await this.commentService.deletedPost(postId);
     const deletePost = await this.postService.deletePost(
       postId,
-      email,
-      userName
+      user.email,
+      user.userName
     );
 
     res
