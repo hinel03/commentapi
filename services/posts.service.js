@@ -60,7 +60,7 @@ class PostService {
       content: createPostData.content,
       createdAt: createPostData.createdAt,
       updatedAt: createPostData.updatedAt,
-      like: createPostData.like,
+      liked: createPostData.like,
     };
   };
 
@@ -79,6 +79,29 @@ class PostService {
       updatedAt: findPost.updatedAt,
       liked: findPost.like,
     };
+  };
+
+  statusCheck = async (postId, userId) => {
+    const result = await this.postRepository.findStatus(postId, userId);
+    return result;
+  };
+
+  likePost = async (postId, userId) => {
+    const createLikePostData = await this.postRepository.likePost(
+      postId,
+      userId
+    );
+
+    return createLikePostData;
+  };
+
+  dislikePost = async (postId, userId) => {
+    const updateLikePost = await this.postRepository.dislikePost(
+      postId,
+      userId
+    );
+
+    return updateLikePost;
   };
 }
 module.exports = PostService;

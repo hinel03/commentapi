@@ -6,6 +6,7 @@ class UserController {
   emailcheck = async (req, res, next) => {
     const { email } = req.params;
     const emailcheck = await this.userService.findOneUser(email);
+    console.log("이메일체크", emailcheck);
     if (emailcheck) {
       this.check = true;
       return res.status(400).json({
