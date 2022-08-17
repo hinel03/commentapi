@@ -23,7 +23,6 @@ class UserController {
   };
   usercheck = async (req, res, next) => {
     const token = req.headers.authorization;
-
     const tokenValue = token;
     const { email, userName } = jwt.verify(tokenValue, "my-secret-key");
     return res.status(200).json({ email: email, userName: userName });
