@@ -12,7 +12,7 @@ const rotuer = require("./routes");
 app.use(
   cors({
     origin: true,
-    credential: true,
+    credential: "true",
   })
 );
 app.use(cookieParser());
