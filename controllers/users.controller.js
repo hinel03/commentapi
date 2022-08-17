@@ -6,7 +6,7 @@ class UserController {
   emailcheck = async (req, res, next) => {
     const { email } = req.params;
     const emailcheck = await this.userService.findOneUser(email);
-    console.log("이메일체크", emailcheck);
+
     if (emailcheck) {
       this.check = true;
       return res.status(400).json({
@@ -23,7 +23,7 @@ class UserController {
   };
   usercheck = async (req, res, next) => {
     const { token } = req.body;
-    console.log(token);
+
     const tokenValue = token;
     const { email, userName } = jwt.verify(tokenValue, "my-secret-key");
     return res.status(200).json({ email: email, userName: userName });
@@ -40,7 +40,7 @@ class UserController {
     const tokenValue = req.cookies.token;
 
     const existUser = await this.userService.findOneUser(email);
-    console.log("existUser", existUser);
+
     let emailtest = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
     let passwordtest = /^[A-Za-z0-9]{8,20}$/;
     let userNametest = /^[가-힣]{2,6}$/;

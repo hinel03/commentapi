@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models");
 
 module.exports = (req, res, next) => {
-  const { token } = req.cookies;
-  console.log(token);
+  const token = req.headers.authorization;
+
   if (!token) {
     res.status(401).json({ result: false, error: "로그인이 필요합니다1." });
 
