@@ -33,10 +33,10 @@ class PostRepository {
   findStatus = async (postId, userId) => {
     const selectPost = await Like.findOne({ where: { postId, userId } });
 
-    if (selectPost) {
-      return { result: true };
-    } else {
+    if (!selectPost) {
       return { result: false };
+    } else {
+      return { result: true };
     }
   };
 
