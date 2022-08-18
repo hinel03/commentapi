@@ -34,9 +34,9 @@ class PostRepository {
     const selectPost = await Like.findOne({ where: { postId, userId } });
 
     if (!selectPost) {
-      return { result: false };
+      return { isclick: false };
     } else {
-      return { result: true };
+      return { isclick: true };
     }
   };
 
@@ -53,7 +53,7 @@ class PostRepository {
           { like: likeSaved + 1 },
           { where: { postId } }
         );
-        return { liked: likeSaved + 1, isClick: true, result: true };
+        return { liked: likeSaved + 1, isclick: true, result: true };
       } else {
         return { result: false, error: "이미 좋아요를 눌렀습니다." };
       }
@@ -75,7 +75,7 @@ class PostRepository {
           { like: likeSaved - 1 },
           { where: { postId } }
         );
-        return { liked: likeSaved - 1, isClick: false, result: true };
+        return { liked: likeSaved - 1, isclick: false, result: true };
       } else {
         return { result: false, error: "좋아요를 누르지 않았습니다." };
       }
