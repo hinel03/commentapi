@@ -67,7 +67,7 @@ class PostsController {
 
     const checkStatus = await this.postService.statusCheck(postId, user.userId);
 
-    if (checkStatus.result === false) {
+    if (checkStatus.isclick === false) {
       const createLikePostData = await this.postService.likePost(
         postId,
         user.userId

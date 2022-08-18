@@ -35,7 +35,7 @@ class CommentRepository {
     });
 
     const updateCommentData = await Comment.destroy({ where: { postId } });
-
+    console.log("테스트", updateCommentData);
     return { result: true, Message: "댓글을 모두 삭제하였습니다." };
   };
 }
