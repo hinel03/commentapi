@@ -12,7 +12,8 @@ const rotuer = require("./routes");
 app.use(
   cors({
     credentials: true,
-    origin: "*",
+    origin:
+      "https://hanghae99-s8week6.s3-website.ap-northeast-2.amazonaws.com/",
   })
 );
 app.use(cookieParser());
