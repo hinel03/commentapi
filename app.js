@@ -9,12 +9,17 @@ const RoutesPost = require("./routes/posts");
 const RoutesComment = require("./routes/comments");
 const rotuer = require("./routes");
 
-app.use(
-  cors({
-    credentials: true,
-    origin: "http://hanghae99-s8week6.s3-website.ap-northeast-2.amazonaws.com/",
-  })
-);
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "http://hanghae99-s8week6.s3-website.ap-northeast-2.amazonaws.com/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.use(cookieParser());
 app.use(express.urlencoded());
 app.use(express.json()); // body로 들어오는 json 형태의 데이터를 파싱해준다.
