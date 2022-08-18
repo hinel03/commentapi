@@ -77,10 +77,10 @@ class PostRepository {
         );
         return { liked: likeSaved - 1, isclick: false, result: true };
       } else {
-        return { result: false, error: "좋아요를 누르지 않았습니다." };
+        return { isclick: false };
       }
     } else {
-      return { result: false, error: "해당 게시글이 존재하지 않습니다." };
+      return { isclick: false };
     }
   };
 }
