@@ -59,7 +59,7 @@ class PostsController {
 
     const checkStatus = await this.postService.statusCheck(postId, user.userId);
 
-    res.status(200).json({ isclick: checkStatus });
+    res.status(200).json(checkStatus);
   };
   likePost = async (req, res, next) => {
     const { postId } = req.params;
