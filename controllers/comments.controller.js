@@ -15,15 +15,16 @@ class CommentController {
     const { postId } = req.params;
     const { user } = res.locals;
 
-    const createCommentData = this.CommentService.createComment(
+    const createCommentData = await this.CommentService.createComment(
       postId,
       user.userName,
       user.email,
       content
     );
 
+    const comment = await this.CommentService.findComments(postId);
     if (createCommentData) {
-      res.status(200).json({ result: true });
+      res.status(200).json({ result: true, comment });
     } else {
       res.status(400).json({ result: false });
     }
