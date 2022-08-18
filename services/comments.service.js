@@ -9,6 +9,7 @@ class CommentService {
     // return comments;
     return comments.map((comment) => {
       return {
+        email: comment.email,
         commentId: comment.commentId,
         userName: comment.userName,
         content: comment.content,
